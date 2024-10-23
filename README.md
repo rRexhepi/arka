@@ -45,7 +45,7 @@ This would spin up three services at once which will be available on these urls:
 
 ## Local Configuration Changes
 
-There is an option to run the code locally without using AWS and only using local SQLite. These are the following steps to follow for using local SQLite database for apiKey and frontend to sync up
+There is an option to run the code locally without using AWS and only using local SQLite. These are the following steps to follow for using local SQLite database for apiKey and frontend to sync up:
 
 * Edit the docker-compose.yml to change the UNSAFE_MODE variable under backend to be true
 * Run `docker compose up`
@@ -74,15 +74,15 @@ The structure should be as follows
   "1": "https://api.etherscan.io/api?module=gastracker&action=gasoracle&apikey=YourApiKeyToken"
 } which then needs to be converted into `base64` value
 - DEFAULT_API_KEY - this is used for checking token paymaster deposits. Please use an apiKey which has the list of token paymasters that needs to be monitored. Please note that it only tracks the token paymasters in `ERC20_PAYMASTERS` and `MULTI_TOKEN_PAYMASTERS` variable specified inside the apiKey.
-- WEBHOOK_URL - this is used to notify if the token paymaster deposit comes below 'thresholdValue' specified in backend/config.json and please note that each chain has configured threshold as approx. 50 USD worth of native tokens
+- WEBHOOK_URL - this is used to notify if the token paymaster deposit comes below 'thresholdValue' specified in backend/config.json and please note that each chain has configured threshold as approx. 50 USD worth of native tokens.
 
 ## API KEY VALIDATION
 - In ARKA Admin Frontend, create an API_KEY with the following format - 
 * Min length - 8 Max length - 20
-* contains atleast one Special characters out of these - `@$!%*-_&`
-* contains atleast one lowercase alphabet
-* contains atleast one uppercase alphabet
-* contains atleast one digit 0-9
+* Contains atleast one Special characters out of these - `@$!%*-_&`
+* Contains atleast one lowercase alphabet
+* Contains atleast one uppercase alphabet
+* Contains atleast one digit 0-9
 
 
 ## 🔙 Arka Backend
@@ -162,37 +162,37 @@ DATABASE_SSL_ENABLED=false
 DATABASE_SSL_REJECT_UNAUTHORIZED=false
 ```
 
-4. start docker instance for backend, admin_frontend, frontend
+4. Start docker instance for backend, admin_frontend, frontend
 
 ```sh
 docker-compose up --build -d
 ```
 
-5. Here we need to create a network and tag backend & postgres on same network
+5. Here we need to create a network and tag backend & Postgres on same network
 
 ```sh
 docker network create arka-network    
 ```
 
-6. add postgres instance to docker network
+6. Add Postgres instance to docker-network
 
 ```sh
 docker network connect arka-network local-setup-db-1
 ```
 
-7. add arka backend docker instance to docker-network
+7. Add Arka backend docker instance to docker-network
 
 ```sh
 docker network connect arka-network arka-backend-1
 ```
 
-8. restart backend docker instance
+8. Restart backend docker instance
 
 ```sh
 docker-compose up -d
 ```
 
-9. verify backend logs
+9. Verify backend logs
 
 ```sh
 docker logs arka-backend-1
